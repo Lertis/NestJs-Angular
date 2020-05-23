@@ -7,17 +7,21 @@ import { MainRoutingModule } from './main-routing.module';
 import { ProductsModule } from './modules/products/products.module';
 
 import { MainComponent } from './main.component';
+import { TopToolbarComponent } from './shared/components/top-toolbar/top-toolbar.component';
+import { MaterialModule } from './modules/material/material.module';
 
 @NgModule({
 	declarations: [
-		MainComponent
+		MainComponent,
+		TopToolbarComponent
 	],
 	imports: [
 		BrowserModule,
 		MainRoutingModule,
 		BrowserAnimationsModule,
 		AppStateModule,
-		ProductsModule
+		ProductsModule,
+		MaterialModule
 	],
 	providers: [],
 	bootstrap: [MainComponent]
