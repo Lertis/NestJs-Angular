@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of, throwError } from 'rxjs';
+import { of } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import { ApiService } from '../../../../shared/services/api.service';
 import * as actions from '../actions/products.actions';
@@ -21,12 +21,9 @@ export class ProductsEffects {
 				return this.api.getRequest<Array<IProduct>>(payload.url).pipe(
 					map((products: IProduct[]) => {
 						return actions.productsLoaded({ products });
-					})
+					}),
+					catchError((err) => of(apiError({ err })))
 				);
-					/*
-					catchError((err) => {
-						return of(apiError({ err }));
-					}); */
 			})
 		)
 	);
