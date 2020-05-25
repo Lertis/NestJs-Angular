@@ -3,8 +3,11 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { takeUntil, mergeMap, catchError } from 'rxjs/operators';
 import { Subject, EMPTY } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from 'src/app/shared/services/api.service';
+import { ApiService } from '../../../../shared/services/api.service';
 import { IProduct } from '../../entity/product.interface';
+import { MessageToastService } from '../../../../shared/services/message.service';
+import { IToastMessage, ToastTypes } from '../../../../models/entities';
+import { RedirectService } from 'src/app/shared/services/redirect.service';
 
 @Component({
 	selector: 'app-product-update',
@@ -21,7 +24,11 @@ export class ProductUpdateComponent implements OnInit, OnDestroy {
 		price: new FormControl(0)
 	});
 
-	constructor(private readonly route: ActivatedRoute, private readonly api: ApiService) {
+	constructor(
+		private readonly route: ActivatedRoute,
+		private readonly api: ApiService,
+		private readonly message: MessageToastService,
+		private readonly redirectService: RedirectService) {
 
 		this.route.params.pipe(
 			takeUntil(this.destroy$),
@@ -29,7 +36,13 @@ export class ProductUpdateComponent implements OnInit, OnDestroy {
 				return this.api.getRequest(`products/${params.id}`);
 			}),
 			catchError((err) => {
-				console.warn(err);
+				const errorMessage: IToastMessage = {
+					type: ToastTypes.Error,
+					detail: err.error.message,
+					summary: err.error.error
+				};
+				this.redirectService.redirectTo('products');
+				this.message.addSingle(errorMessage);
 				return EMPTY;
 			})
 		).subscribe((product: IProduct) => {
@@ -55,7 +68,7 @@ export class ProductUpdateComponent implements OnInit, OnDestroy {
 		return this.updateForm.controls[fieldName].hasError('required') ? `Field ${fieldName} is required!` : '';
 	}
 
-	private formHasChanged() {	
+	private formHasChanged() {
 		// Form has been changed
 	}
 

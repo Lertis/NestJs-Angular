@@ -16,6 +16,9 @@ import { ApiService } from './shared/services/api.service';
 import { MainHttpInterceptor } from './shared/interceptors/main.http.interceptor';
 import { RedirectService } from './shared/services/redirect.service';
 import { ConfirmationPopUpComponent } from './shared/components/confirmation-pop-up/confirmation-pop-up.component';
+import { PrimeNgModule } from './modules/primeng/primeng.module';
+import { MessageService } from 'primeng/api';
+import { MessageToastService } from './shared/services/message.service';
 
 @NgModule({
 	declarations: [
@@ -31,7 +34,8 @@ import { ConfirmationPopUpComponent } from './shared/components/confirmation-pop
 		BrowserAnimationsModule,
 		AppStateModule,
 		ProductsModule,
-		MaterialModule
+		MaterialModule,
+		PrimeNgModule
 	],
 	providers: [
 		ApiService,
@@ -40,7 +44,9 @@ import { ConfirmationPopUpComponent } from './shared/components/confirmation-pop
 			useClass: MainHttpInterceptor,
 			multi: true
 		},
-		RedirectService
+		RedirectService,
+		MessageToastService,
+		MessageService
 	],
 	bootstrap: [MainComponent]
 })
