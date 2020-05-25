@@ -14,7 +14,10 @@
 	<div class="form-item">
 		<mat-form-field>
 			<input matInput id="productPrice" type="number" required="required" placeholder="Price" formControlName="price" name="price">
-
 		</mat-form-field>
+	</div>
+	<div>
+		<button mat-raised-button color="primary" [disabled]="disableBtn" (click)="updateProduct()">Update</button>
+    <button mat-raised-button (click)="redirectService.redirectTo('products')">Cancel</button>
 	</div>
 </form>

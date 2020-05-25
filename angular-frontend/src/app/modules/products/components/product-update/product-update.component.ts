@@ -1,13 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { takeUntil, mergeMap, catchError } from 'rxjs/operators';
+import { takeUntil, mergeMap, catchError, skip } from 'rxjs/operators';
 import { Subject, EMPTY } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../../../shared/services/api.service';
 import { IProduct } from '../../entity/product.interface';
 import { MessageToastService } from '../../../../shared/services/message.service';
 import { IToastMessage, ToastTypes } from '../../../../models/entities';
-import { RedirectService } from 'src/app/shared/services/redirect.service';
+import { RedirectService } from '../../../../shared/services/redirect.service';
+import { cloneDeep } from 'lodash';
+import { productProfileValidation } from '../../utils/validation';
 
 @Component({
 	selector: 'app-product-update',
@@ -17,6 +19,7 @@ import { RedirectService } from 'src/app/shared/services/redirect.service';
 export class ProductUpdateComponent implements OnInit, OnDestroy {
 
 	private readonly destroy$ = new Subject<void>();
+	private productId: string;
 
 	public updateForm = new FormGroup({
 		title: new FormControl(''),
@@ -24,11 +27,19 @@ export class ProductUpdateComponent implements OnInit, OnDestroy {
 		price: new FormControl(0)
 	});
 
+	public formSet = {
+		title: '',
+		description: '',
+		price: 0
+	};
+
+	public disableBtn = true;
+
 	constructor(
 		private readonly route: ActivatedRoute,
 		private readonly api: ApiService,
 		private readonly message: MessageToastService,
-		private readonly redirectService: RedirectService) {
+		public readonly redirectService: RedirectService) {
 
 		this.route.params.pipe(
 			takeUntil(this.destroy$),
@@ -46,10 +57,12 @@ export class ProductUpdateComponent implements OnInit, OnDestroy {
 				return EMPTY;
 			})
 		).subscribe((product: IProduct) => {
+			this.productId = product.id;
 			this.setFormValue(product);
 		});
 
 		this.updateForm.valueChanges.pipe(
+			skip(1),
 			takeUntil(this.destroy$)
 		).subscribe((resultOfChanges: {
 			description: string
@@ -57,6 +70,19 @@ export class ProductUpdateComponent implements OnInit, OnDestroy {
 			title: string
 		}) => {
 			this.formHasChanged();
+		});
+	}
+
+	public updateProduct() {
+		this.api.patchRequest<IProduct>(`products/${this.productId}`, this.updateForm.value).pipe(
+			takeUntil(this.destroy$)
+		).subscribe(() => {
+			this.redirectService.redirectTo('products', {replaceUrl: true});
+			this.message.addSingle({
+				type: ToastTypes.Success,
+				detail: 'Product has been successfully updated',
+				summary: `Product # ${this.productId} updated`
+			});
 		});
 	}
 
@@ -69,7 +95,10 @@ export class ProductUpdateComponent implements OnInit, OnDestroy {
 	}
 
 	private formHasChanged() {
-		// Form has been changed
+		const profileClone = cloneDeep(this.updateForm.value);
+		const profileCheck = productProfileValidation(profileClone, this.formSet);
+		const checkSet = Object.keys(profileCheck).map(attr => profileCheck[attr]);
+		this.disableBtn = checkSet.some((flag: boolean) => !flag);
 	}
 
 	private setFormValue(product: IProduct) {
@@ -78,6 +107,7 @@ export class ProductUpdateComponent implements OnInit, OnDestroy {
 			description: product.description,
 			price: product.price
 		});
+		this.formSet = this.updateForm.value;
 	}
 
 	ngOnInit(): void {
