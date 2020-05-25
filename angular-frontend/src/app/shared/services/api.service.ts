@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { merge } from 'lodash';
 
 interface IHttpOptions {
 	headers?: HttpHeaders | {
