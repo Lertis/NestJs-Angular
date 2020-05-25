@@ -15,12 +15,14 @@ import { SpinnerComponent } from './shared/components/spinner/spinner.component'
 import { ApiService } from './shared/services/api.service';
 import { MainHttpInterceptor } from './shared/interceptors/main.http.interceptor';
 import { RedirectService } from './shared/services/redirect.service';
+import { ConfirmationPopUpComponent } from './shared/components/confirmation-pop-up/confirmation-pop-up.component';
 
 @NgModule({
 	declarations: [
 		MainComponent,
 		TopToolbarComponent,
-		SpinnerComponent
+		SpinnerComponent,
+		ConfirmationPopUpComponent
 	],
 	imports: [
 		BrowserModule,
