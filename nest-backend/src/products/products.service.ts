@@ -4,7 +4,14 @@ import { Product } from './product.model';
 
 @Injectable()
 export class ProductsService {
-	private products: Product[] = [];
+	private products: Product[] = [
+		{
+			id: '1',
+			description: 'description',
+			price: 123,
+			title: 'title'
+		}
+	];
 
 	insertProduct(title: string, desc: string, price: number) {
 		const prodId = Math.random().toString();
