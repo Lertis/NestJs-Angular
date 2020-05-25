@@ -6,6 +6,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { CommonModule } from '@angular/common';
 import { ProductAddComponent } from './components/product-add/product-add.component';
 import { ProductUpdateComponent } from './components/product-update/product-update.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,7 +19,9 @@ import { ProductUpdateComponent } from './components/product-update/product-upda
 	],
 	imports: [
 		CommonModule,
-		MaterialModule
+		MaterialModule,
+		FormsModule,
+		ReactiveFormsModule
 	],
 	providers: [],
 	exports: [ProductsWrapperComponent]

@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
 
 const materialModules = [
 	MatButtonModule,
@@ -16,7 +17,8 @@ const materialModules = [
 	MatIconModule,
 	MatProgressSpinnerModule,
 	MatGridListModule,
-	MatDialogModule
+	MatDialogModule,
+	MatInputModule
 ];
 
 @NgModule({
