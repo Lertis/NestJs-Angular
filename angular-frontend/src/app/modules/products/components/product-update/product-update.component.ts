@@ -1,7 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { takeUntil, mergeMap, catchError } from 'rxjs/operators';
+import { Subject, EMPTY } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { ApiService } from 'src/app/shared/services/api.service';
+import { IProduct } from '../../entity/product.interface';
 
 @Component({
 	selector: 'app-product-update',
@@ -18,7 +21,21 @@ export class ProductUpdateComponent implements OnInit, OnDestroy {
 		price: new FormControl(0)
 	});
 
-	constructor() {
+	constructor(private readonly route: ActivatedRoute, private readonly api: ApiService) {
+
+		this.route.params.pipe(
+			takeUntil(this.destroy$),
+			mergeMap((params: { id: string }) => {
+				return this.api.getRequest(`products/${params.id}`);
+			}),
+			catchError((err) => {
+				console.warn(err);
+				return EMPTY;
+			})
+		).subscribe((product: IProduct) => {
+			this.setFormValue(product);
+		});
+
 		this.updateForm.valueChanges.pipe(
 			takeUntil(this.destroy$)
 		).subscribe((resultOfChanges: {
@@ -38,8 +55,16 @@ export class ProductUpdateComponent implements OnInit, OnDestroy {
 		return this.updateForm.controls[fieldName].hasError('required') ? `Field ${fieldName} is required!` : '';
 	}
 
-	private formHasChanged() {
+	private formHasChanged() {	
 		// Form has been changed
+	}
+
+	private setFormValue(product: IProduct) {
+		this.updateForm.setValue({
+			title: product.title,
+			description: product.description,
+			price: product.price
+		});
 	}
 
 	ngOnInit(): void {
