@@ -1,7 +1,17 @@
 <mat-grid-list cols="1" rowHeight="2:1">
-	<ng-container *ngFor="let product of products$ | async; trackBy: trackByMethod">
-		<mat-grid-tile>
-			<app-product [product]="product"></app-product>
-		</mat-grid-tile>
-	</ng-container>
+	<ng-template [ngIf]="(products$ | async).length > 0" [ngIfElse]="loading">
+		<ng-container *ngFor="let product of products$ | async; trackBy: trackByMethod">
+			<mat-grid-tile>
+				<app-product [product]="product"></app-product>
+			</mat-grid-tile>
+		</ng-container>
+	</ng-template>
+	
+	<ng-template #loading>
+	 <p>Here is no products now.</p>
+	 <h2>Would you like to add ?</h2>
+	 <button mat-fab color="accent" aria-label="Add">
+		<mat-icon>add</mat-icon>
+	</button>
+	</ng-template>
 </mat-grid-list>
