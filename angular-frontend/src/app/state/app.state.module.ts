@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-
 import { ProductsStateModule } from '../modules/products/store/products.state.module';
+import { CommonEffects } from './common.effects';
 
 
 @NgModule({
@@ -12,7 +12,7 @@ import { ProductsStateModule } from '../modules/products/store/products.state.mo
 		StoreDevtoolsModule.instrument({
 			maxAge: 50
 		}),
-		EffectsModule.forRoot([]),
+		EffectsModule.forRoot([CommonEffects]),
 		ProductsStateModule
 	]
 })

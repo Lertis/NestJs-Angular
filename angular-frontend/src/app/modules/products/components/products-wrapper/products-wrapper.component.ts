@@ -13,7 +13,7 @@ export class ProductsWrapperComponent implements OnInit {
 	constructor(private readonly store: Store<AppState>) { }
 
 	ngOnInit(): void {
-		this.store.dispatch(productsLoadRequest());
+		this.store.dispatch(productsLoadRequest({ url: 'products' }));
 	}
 
 }
