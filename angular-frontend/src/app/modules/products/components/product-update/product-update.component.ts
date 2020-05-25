@@ -41,7 +41,7 @@ export class ProductUpdateComponent implements OnInit, OnDestroy {
 					detail: err.error.message,
 					summary: err.error.error
 				};
-				this.redirectService.redirectTo('products');
+				this.redirectService.redirectTo('products', { replaceUrl: true });
 				this.message.addSingle(errorMessage);
 				return EMPTY;
 			})
