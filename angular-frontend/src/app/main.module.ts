@@ -14,6 +14,7 @@ import { MaterialModule } from './modules/material/material.module';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { ApiService } from './shared/services/api.service';
 import { MainHttpInterceptor } from './shared/interceptors/main.http.interceptor';
+import { RedirectService } from './shared/services/redirect.service';
 
 @NgModule({
 	declarations: [
@@ -36,7 +37,8 @@ import { MainHttpInterceptor } from './shared/interceptors/main.http.interceptor
 			provide: HTTP_INTERCEPTORS,
 			useClass: MainHttpInterceptor,
 			multi: true
-		}
+		},
+		RedirectService
 	],
 	bootstrap: [MainComponent]
 })

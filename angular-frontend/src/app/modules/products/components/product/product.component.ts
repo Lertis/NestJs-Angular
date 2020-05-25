@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { IProduct } from '../../entity/product.interface';
+import { RedirectService } from 'src/app/shared/services/redirect.service';
 
 @Component({
 	selector: 'app-product',
@@ -7,13 +8,14 @@ import { IProduct } from '../../entity/product.interface';
 	styleUrls: ['./product.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent{
 
 	@Input() public product: IProduct;
 
-	constructor() { }
+	constructor(public readonly redirectService: RedirectService) { }
 
-	ngOnInit(): void {
+	public getUpdateUrl() {
+		return `products/update/${this.product.id}`;
 	}
 
 }

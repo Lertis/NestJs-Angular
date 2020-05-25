@@ -10,7 +10,7 @@
 	<ng-template #loading>
 	 <p>Here is no products now.</p>
 	 <h2>Would you like to add ?</h2>
-	 <button mat-fab color="accent" aria-label="Add">
+	 <button mat-fab color="accent" aria-label="Add" (click)="redirectService.redirectTo('products/add')">
 		<mat-icon>add</mat-icon>
 	</button>
 	</ng-template>

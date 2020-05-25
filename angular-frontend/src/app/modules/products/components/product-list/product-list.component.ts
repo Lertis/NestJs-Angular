@@ -4,6 +4,7 @@ import { AppState } from '../../../../state';
 import { selectProducts } from '../../store/selectors/products.selectors';
 import { Observable } from 'rxjs';
 import { IProduct } from '../../entity/product.interface';
+import { RedirectService } from 'src/app/shared/services/redirect.service';
 
 @Component({
 	selector: 'app-product-list',
@@ -13,7 +14,7 @@ import { IProduct } from '../../entity/product.interface';
 export class ProductListComponent {
 	public products$: Observable<IProduct[]>;
 
-	constructor(private readonly store: Store<AppState>) {
+	constructor(private readonly store: Store<AppState>, public readonly redirectService: RedirectService) {
 		this.products$ = this.store.select(selectProducts);
 	}
 

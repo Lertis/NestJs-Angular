@@ -13,7 +13,7 @@
 		</p>
 	</mat-card-content>
 	<mat-card-actions>
-		<button mat-fab color="accent" aria-label="Update">
+		<button mat-fab color="accent" aria-label="Update" (click)="redirectService.redirectTo(this.getUpdateUrl())">
 			<mat-icon>update</mat-icon>
 		</button>
 		<button mat-fab color="accent" aria-label="Remove">
