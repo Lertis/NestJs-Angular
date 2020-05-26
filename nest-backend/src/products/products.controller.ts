@@ -1,12 +1,14 @@
-import { Controller, Post, Body, Get, Param, Patch, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Patch, Delete, UsePipes, ValidationPipe, UseGuards } from '@nestjs/common';
 
 import { ProductsService } from './products.service';
+import { AuthGuard } from '../guards/auth.guard';
 
 @Controller('products')
 export class ProductsController {
 	constructor(private readonly productsService: ProductsService) {}
 
 	@Post()
+	@UsePipes(new ValidationPipe())
 	addProduct(
 		@Body('title') prodTitle: string,
 		@Body('description') prodDesc: string,
@@ -17,6 +19,7 @@ export class ProductsController {
 	}
 
 	@Get()
+	@UseGuards(AuthGuard)
 	getAllProducts() {
 		return this.productsService.getProducts();
 	}
