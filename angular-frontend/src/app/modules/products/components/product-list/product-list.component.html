@@ -1,17 +1,25 @@
-<mat-grid-list cols="1" rowHeight="2:1">
-	<ng-template [ngIf]="(products$ | async).length > 0" [ngIfElse]="loading">
-		<ng-container *ngFor="let product of products$ | async; trackBy: trackByMethod">
-			<mat-grid-tile>
-				<app-product [product]="product"></app-product>
-			</mat-grid-tile>
-		</ng-container>
+<ng-container *ngIf="isLoading; then loading; else mainContent"></ng-container>
+<ng-template #loading>
+	<div style="display: flex; align-items: center;">
+		<app-spinner [color]="'primary'" [mode]="'indeterminate'"></app-spinner>
+	</div>
+</ng-template>
+<ng-template #mainContent>
+	<ng-container *ngIf="isLoaded && products.length === 0; then noData;"></ng-container>
+	<ng-template #noData>
+		<p>Here is no products now.</p>
+		<h2>Would you like to add ?</h2>
+		<button mat-fab color="accent" aria-label="Add" (click)="redirectService.redirectTo('products/add')">
+			<mat-icon>add</mat-icon>
+		</button>
 	</ng-template>
-	
-	<ng-template #loading>
-	 <p>Here is no products now.</p>
-	 <h2>Would you like to add ?</h2>
-	 <button mat-fab color="accent" aria-label="Add" (click)="redirectService.redirectTo('products/add')">
-		<mat-icon>add</mat-icon>
-	</button>
+
+	<ng-container *ngIf="isLoaded && products.length !== 0; then showData;"></ng-container>
+	<ng-template #showData>
+		<div class="grid-container-list">
+			<ng-container *ngFor="let product of products; trackBy: trackByMethod">
+				<app-product class="mrg-1" [product]="product"></app-product>
+			</ng-container>
+		</div>
 	</ng-template>
-</mat-grid-list>
+</ng-template>

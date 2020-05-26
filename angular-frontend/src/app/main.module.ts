@@ -11,7 +11,6 @@ import { ProductsModule } from './modules/products/products.module';
 import { MainComponent } from './main.component';
 import { TopToolbarComponent } from './shared/components/top-toolbar/top-toolbar.component';
 import { MaterialModule } from './modules/material/material.module';
-import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { ApiService } from './shared/services/api.service';
 import { MainHttpInterceptor } from './shared/interceptors/main.http.interceptor';
 import { RedirectService } from './shared/services/redirect.service';
@@ -24,7 +23,6 @@ import { MessageToastService } from './shared/services/message.service';
 	declarations: [
 		MainComponent,
 		TopToolbarComponent,
-		SpinnerComponent,
 		ConfirmationPopUpComponent
 	],
 	imports: [

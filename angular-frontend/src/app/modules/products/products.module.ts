@@ -7,6 +7,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { CommonModule } from '@angular/common';
 import { ProductAddComponent } from './components/product-add/product-add.component';
 import { ProductUpdateComponent } from './components/product-update/product-update.component';
+import { SpinnerComponent } from '../../shared/components/spinner/spinner.component';
 
 @NgModule({
 	declarations: [
@@ -14,7 +15,8 @@ import { ProductUpdateComponent } from './components/product-update/product-upda
 		ProductComponent,
 		ProductListComponent,
 		ProductAddComponent,
-		ProductUpdateComponent
+		ProductUpdateComponent,
+		SpinnerComponent
 	],
 	imports: [
 		CommonModule,
