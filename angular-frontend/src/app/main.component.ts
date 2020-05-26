@@ -6,23 +6,28 @@ import { RedirectService } from './shared/services/redirect.service';
 @Component({
 	selector: 'app-root',
 	templateUrl: './main.component.html',
-	styleUrls: ['./main.component.scss']
+	styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnDestroy {
 	mobileQuery: MediaQueryList;
 	private mobileQueryListener: () => void;
 	fillerNav = [
 		{
+			text: 'Products',
+			link: `products`,
+		},
+		{
 			text: `About`,
-			link: `about`
-		}
+			link: `about`,
+		},
 	];
 
 	constructor(
 		private readonly changeDetectorRef: ChangeDetectorRef,
 		private readonly media: MediaMatcher,
 		public readonly redirectService: RedirectService,
-		private readonly router: Router) {
+		private readonly router: Router
+	) {
 		this.mobileQuery = media.matchMedia('(max-width: 600px)');
 		this.mobileQueryListener = () => changeDetectorRef.detectChanges();
 		this.mobileQuery.addEventListener('change', this.mobileQueryListener);
