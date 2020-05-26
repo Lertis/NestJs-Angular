@@ -6,7 +6,8 @@ export function productProfileValidation(
 
 	const valid: boolean[] = [
 		!!current.description && current.description.trim().length !== 0 && current.description !== '',
-		!!current.title && current.title.trim().length !== 0 && current.title !== ''
+		!!current.title && current.title.trim().length !== 0 && current.title !== '',
+		current.price !== 0
 	];
 
 	const keysCollection = [];

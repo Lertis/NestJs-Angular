@@ -1,1 +1,26 @@
-<p>product-add works!</p>
+<form [formGroup]="createForm" class="form">
+	<div class="form-item">
+		<mat-form-field>
+			<input matInput id="productTitle" type="text" required="required" maxlength="15" placeholder="Title"
+				formControlName="title" name="title">
+			<mat-error *ngIf="fieldHasError('title')">{{getErrorMessage('title')}}</mat-error>
+		</mat-form-field>
+	</div>
+	<div class="form-item">
+		<mat-form-field>
+			<input matInput id="productDescription" type="text" required="required" maxlength="50" placeholder="Description"
+				formControlName="description" name="description">
+			<mat-error *ngIf="fieldHasError('description')">{{getErrorMessage('description')}}</mat-error>
+		</mat-form-field>
+	</div>
+	<div class="form-item">
+		<mat-form-field>
+			<input matInput id="productPrice" type="number" required="required" placeholder="Price" formControlName="price"
+				name="price">
+		</mat-form-field>
+	</div>
+	<div>
+		<button mat-raised-button color="primary" [disabled]="disableBtn" (click)="createProduct()">Update</button>
+		<button mat-raised-button (click)="redirectService.redirectTo('products')">Cancel</button>
+	</div>
+</form>

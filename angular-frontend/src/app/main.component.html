@@ -15,8 +15,13 @@
 		</mat-sidenav>
 
 		<mat-sidenav-content>
-			<p-toast></p-toast>
+			<ng-template [ngIf]="showAddComponent()">
+				<button fixed-r-b mat-fab color="primary" aria-label="Add product" (click)="redirectService.redirectTo('products/add')">
+					<mat-icon>add</mat-icon>
+				</button>
+			</ng-template>
 			<router-outlet></router-outlet>
 		</mat-sidenav-content>
 	</mat-sidenav-container>
 </div>
+<p-toast></p-toast>

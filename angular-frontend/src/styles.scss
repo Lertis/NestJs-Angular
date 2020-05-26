@@ -23,6 +23,13 @@ body {
 	margin: 0.3em;
 }
 
+button[fixed-r-b] {
+	position: fixed;
+	bottom: 20px;
+	right: 35px;
+	z-index: 2;
+}
+
 mat-sidenav-container {
 	background-color: rgb(216, 214, 214);
 }
