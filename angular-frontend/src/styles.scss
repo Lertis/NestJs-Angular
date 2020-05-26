@@ -7,7 +7,6 @@ html, body { height: 100%; }
 body {
 	margin: 0;
 	font-family: Roboto, "Helvetica Neue", sans-serif;
-	background-color: rgb(241, 241, 241);
 }
 
 .grid-container-main {
@@ -20,10 +19,14 @@ body {
 	grid-template-columns: 1fr 1fr 1fr;
 }
 
-.mrg-1 {
-	margin: 0.1em;
+.mrg-3 {
+	margin: 0.3em;
 }
 
-.pdn-1 {
-	padding: 1em;
+mat-sidenav-container {
+	background-color: rgb(216, 214, 214);
+}
+
+mat-card {
+	background: #c5ddff80 !important;
 }
