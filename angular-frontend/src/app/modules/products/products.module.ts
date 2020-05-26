@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { MaterialModule } from '../material/material.module';
+import { SharedModule } from '../../shared/shared.module';
+
+import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductsWrapperComponent } from './components/products-wrapper/products-wrapper.component';
 import { ProductComponent } from './components/product/product.component';
-import { MaterialModule } from '../material/material.module';
-import { ProductListComponent } from './components/product-list/product-list.component';
-import { CommonModule } from '@angular/common';
 import { ProductAddComponent } from './components/product-add/product-add.component';
 import { ProductUpdateComponent } from './components/product-update/product-update.component';
-import { SpinnerComponent } from '../../shared/components/spinner/spinner.component';
+
 
 @NgModule({
 	declarations: [
@@ -15,14 +18,14 @@ import { SpinnerComponent } from '../../shared/components/spinner/spinner.compon
 		ProductComponent,
 		ProductListComponent,
 		ProductAddComponent,
-		ProductUpdateComponent,
-		SpinnerComponent
+		ProductUpdateComponent
 	],
 	imports: [
 		CommonModule,
 		MaterialModule,
 		FormsModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		SharedModule
 	],
 	providers: [],
 	exports: [ProductsWrapperComponent]

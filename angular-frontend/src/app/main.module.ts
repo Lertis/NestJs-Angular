@@ -9,7 +9,6 @@ import { MainRoutingModule } from './main-routing.module';
 import { ProductsModule } from './modules/products/products.module';
 
 import { MainComponent } from './main.component';
-import { TopToolbarComponent } from './shared/components/top-toolbar/top-toolbar.component';
 import { MaterialModule } from './modules/material/material.module';
 import { ApiService } from './shared/services/api.service';
 import { MainHttpInterceptor } from './shared/interceptors/main.http.interceptor';
@@ -18,12 +17,11 @@ import { ConfirmationPopUpComponent } from './shared/components/confirmation-pop
 import { PrimeNgModule } from './modules/primeng/primeng.module';
 import { MessageService } from 'primeng/api';
 import { MessageToastService } from './shared/services/message.service';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
 	declarations: [
 		MainComponent,
-		TopToolbarComponent,
-		ConfirmationPopUpComponent
 	],
 	imports: [
 		BrowserModule,
@@ -33,7 +31,8 @@ import { MessageToastService } from './shared/services/message.service';
 		AppStateModule,
 		ProductsModule,
 		MaterialModule,
-		PrimeNgModule
+		PrimeNgModule,
+		SharedModule
 	],
 	providers: [
 		ApiService,
