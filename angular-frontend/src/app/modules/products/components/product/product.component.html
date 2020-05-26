@@ -1,19 +1,22 @@
 <mat-card>
 	<mat-card-header>
-		<mat-card-title>ID: {{product.id}}</mat-card-title>
-		<mat-card-subtitle>Title: {{[product.title]}}</mat-card-subtitle>
+		<mat-card-title>ID: {{ product.id }}</mat-card-title>
+		<mat-card-subtitle>Title: {{ [product.title] }}</mat-card-subtitle>
 	</mat-card-header>
 	<mat-card-content>
-		<h2>Descripton: </h2>
+		<h2>Descripton:</h2>
 		<p>
-			{{product.description}}
+			{{ product.description }}
 		</p>
-		<p>
-			Price <mat-icon aria-label="Price">local_offer</mat-icon> {{product.price}}
-		</p>
+		<p class="flex-alg-center"><mat-icon aria-label="Price">local_offer</mat-icon> {{ product.price }}</p>
 	</mat-card-content>
 	<mat-card-actions>
-		<button mat-icon-button color="primary" aria-label="Update" (click)="redirectService.redirectTo(this.getUpdateUrl())">
+		<button
+			mat-icon-button
+			color="primary"
+			aria-label="Update"
+			(click)="redirectService.redirectTo(this.getUpdateUrl())"
+		>
 			<mat-icon>update</mat-icon>
 		</button>
 		<button mat-icon-button color="warn" aria-label="Remove" (click)="deleteProduct(product)">
