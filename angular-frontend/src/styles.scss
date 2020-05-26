@@ -3,37 +3,69 @@
 @import '../node_modules/primeng/resources/themes/nova-light/theme.css';
 @import '../node_modules/primeng/resources/primeng.min.css';
 
-html, body { height: 100%; }
+html,
 body {
-	margin: 0;
-	font-family: Roboto, "Helvetica Neue", sans-serif;
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
 .grid-container-main {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .grid-container-list {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .mrg-3 {
-	margin: 0.3em;
+  margin: 0.3em;
 }
 
 button[fixed-r-b] {
-	position: fixed;
-	bottom: 20px;
-	right: 35px;
-	z-index: 2;
+  position: fixed;
+  bottom: 20px;
+  right: 35px;
+  z-index: 2;
 }
 
 mat-sidenav-container {
-	background-color: rgb(216, 214, 214);
+  background-color: rgb(216, 214, 214);
 }
 
 mat-card {
-	background: #c5ddff80 !important;
+  background: #c5ddff80 !important;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-space-around {
+  display: flex;
+  justify-content: space-around;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem;
+}
+
+.form-item {
+  margin: 0.3em;
+  padding: 0.3em;
+}
+
+.form-item-actions {
+  button {
+    margin: 0.15em;
+  }
 }
