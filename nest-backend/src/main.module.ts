@@ -4,9 +4,10 @@ import { LoggerMiddleware } from './middleware/logger.middleware';
 import { AuthGuard } from './guards/auth.guard';
 import { LoggingInterceptor } from './interceptors/logging.interceptor';
 import { LoggerModule } from './modules/logger/logger.module';
+import { DynamicDumpModule } from './modules/dynamic/dynamic.dump.module';
 
 @Module({
-	imports: [ProductsModule, LoggerModule],
+	imports: [ProductsModule, LoggerModule, DynamicDumpModule.forRoot()],
 	controllers: [],
 	providers: [AuthGuard, LoggingInterceptor],
 })
