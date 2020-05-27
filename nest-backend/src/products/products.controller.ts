@@ -13,14 +13,20 @@ import {
 	Inject,
 } from '@nestjs/common';
 
-import { ProductsService } from './products.service';
+import { ProductsService } from './services/products.service';
 import { AuthGuard } from '../guards/auth.guard';
 import { LoggingInterceptor } from '../interceptors/logging.interceptor';
+import { InfoService } from './services/info.service';
 
 @UseInterceptors(LoggingInterceptor)
 @Controller('products')
 export class ProductsController {
-	constructor(private readonly productsService: ProductsService, @Inject('SIMPLE_LOG') private readonly simple) {
+	constructor(
+		private readonly productsService: ProductsService,
+		@Inject('SIMPLE_LOG') private readonly simple,
+		@Inject('MINE') private readonly info: InfoService
+	) {
+		console.log(this.info.infoRun());
 		this.simple.log('TOKEN SERVICE INJECT');
 	}
 

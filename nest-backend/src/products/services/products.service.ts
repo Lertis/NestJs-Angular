@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 
-import { Product } from './product.model';
 import { v4 as uuidv4 } from 'uuid';
+import { Product } from '../product.model';
 
 @Injectable()
 export class ProductsService {

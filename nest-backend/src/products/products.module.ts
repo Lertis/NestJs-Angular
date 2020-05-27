@@ -1,13 +1,9 @@
-import { Module, Global } from '@nestjs/common';
+import { Module, Global, Scope } from '@nestjs/common';
 
 import { ProductsController } from './products.controller';
-import { ProductsService } from './products.service';
-
-export const mockService = {
-	log(message: string) {
-		console.log(`${message} !!!`);
-	},
-};
+import { ProductsService } from './services/products.service';
+import { mockService } from './services/mock.service';
+import { InfoService } from './services/info.service';
 
 @Global()
 @Module({
@@ -18,6 +14,15 @@ export const mockService = {
 			provide: 'SIMPLE_LOG',
 			useValue: mockService,
 		},
+		{
+			provide: 'MINE',
+			scope: Scope.REQUEST,
+			useFactory: (info: InfoService) => {
+				return info;
+			},
+			inject: [InfoService],
+		},
+		InfoService,
 	],
 	exports: [ProductsService],
 })
