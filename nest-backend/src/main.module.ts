@@ -3,9 +3,10 @@ import { ProductsModule } from './products/products.module';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { AuthGuard } from './guards/auth.guard';
 import { LoggingInterceptor } from './interceptors/logging.interceptor';
+import { LoggerModule } from './modules/logger/logger.module';
 
 @Module({
-	imports: [ProductsModule],
+	imports: [ProductsModule, LoggerModule],
 	controllers: [],
 	providers: [AuthGuard, LoggingInterceptor],
 })

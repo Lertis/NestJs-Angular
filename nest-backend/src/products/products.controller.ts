@@ -10,6 +10,7 @@ import {
 	ValidationPipe,
 	UseGuards,
 	UseInterceptors,
+	Inject,
 } from '@nestjs/common';
 
 import { ProductsService } from './products.service';
@@ -19,7 +20,9 @@ import { LoggingInterceptor } from '../interceptors/logging.interceptor';
 @UseInterceptors(LoggingInterceptor)
 @Controller('products')
 export class ProductsController {
-	constructor(private readonly productsService: ProductsService) {}
+	constructor(private readonly productsService: ProductsService, @Inject('SIMPLE_LOG') private readonly simple) {
+		this.simple.log('TOKEN SERVICE INJECT');
+	}
 
 	@Post()
 	@UsePipes(new ValidationPipe())
