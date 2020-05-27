@@ -1,5 +1,5 @@
 import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
-import { ProductsModule } from './products/products.module';
+import { ProductsModule } from './modules/products/products.module';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { AuthGuard } from './guards/auth.guard';
 import { LoggingInterceptor } from './interceptors/logging.interceptor';

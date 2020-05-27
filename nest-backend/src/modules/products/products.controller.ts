@@ -14,8 +14,8 @@ import {
 } from '@nestjs/common';
 
 import { ProductsService } from './services/products.service';
-import { AuthGuard } from '../guards/auth.guard';
-import { LoggingInterceptor } from '../interceptors/logging.interceptor';
+import { AuthGuard } from '../../guards/auth.guard';
+import { LoggingInterceptor } from '../../interceptors/logging.interceptor';
 import { InfoService } from './services/info.service';
 
 @UseInterceptors(LoggingInterceptor)
