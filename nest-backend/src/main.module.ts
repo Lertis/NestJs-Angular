@@ -2,11 +2,12 @@ import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/c
 import { ProductsModule } from './products/products.module';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { AuthGuard } from './guards/auth.guard';
+import { LoggingInterceptor } from './interceptors/logging.interceptor';
 
 @Module({
 	imports: [ProductsModule],
 	controllers: [],
-	providers: [AuthGuard],
+	providers: [AuthGuard, LoggingInterceptor],
 })
 export class MainModule implements NestModule {
 	configure(consumer: MiddlewareConsumer) {

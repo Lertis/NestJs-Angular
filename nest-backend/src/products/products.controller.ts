@@ -1,8 +1,22 @@
-import { Controller, Post, Body, Get, Param, Patch, Delete, UsePipes, ValidationPipe, UseGuards } from '@nestjs/common';
+import {
+	Controller,
+	Post,
+	Body,
+	Get,
+	Param,
+	Patch,
+	Delete,
+	UsePipes,
+	ValidationPipe,
+	UseGuards,
+	UseInterceptors,
+} from '@nestjs/common';
 
 import { ProductsService } from './products.service';
 import { AuthGuard } from '../guards/auth.guard';
+import { LoggingInterceptor } from '../interceptors/logging.interceptor';
 
+@UseInterceptors(LoggingInterceptor)
 @Controller('products')
 export class ProductsController {
 	constructor(private readonly productsService: ProductsService) {}
