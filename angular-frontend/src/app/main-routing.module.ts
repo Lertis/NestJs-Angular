@@ -11,6 +11,7 @@ const routes: Routes = [
 	{ path: 'products', component: ProductsWrapperComponent },
 	{ path: 'products/add', component: ProductAddComponent },
 	{ path: 'products/update/:id', component: ProductUpdateComponent, canActivate: [RedirectGuard] },
+	{ path: 'auth', loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule) },
 	{ path: 'about', loadChildren: () => import('./modules/about/about.module').then((m) => m.AboutModule) },
 	{ path: '**', component: NotFoundComponent },
 ];

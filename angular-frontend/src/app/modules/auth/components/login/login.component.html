@@ -1,0 +1,36 @@
+<form [formGroup]="loginForm" class="form">
+	<div class="form-item">
+		<mat-form-field>
+			<input
+				matInput
+				id="username"
+				type="text"
+				required="required"
+				maxlength="15"
+				placeholder="Username"
+				formControlName="username"
+				name="username"
+			/>
+			<mat-error *ngIf="fieldHasError('username')">{{ getErrorMessage('username') }}</mat-error>
+		</mat-form-field>
+	</div>
+	<div class="form-item">
+		<mat-form-field>
+			<input
+				matInput
+				id="password"
+				type="password"
+				required="required"
+				maxlength="50"
+				placeholder="Password"
+				formControlName="password"
+				name="password"
+			/>
+			<mat-error *ngIf="fieldHasError('password')">{{ getErrorMessage('password') }}</mat-error>
+		</mat-form-field>
+	</div>
+	<div>
+		<button mat-raised-button color="primary" [disabled]="disableBtn" (click)="login()">Login</button>
+		<button mat-raised-button (click)="redirectService.redirectTo('auth/reg')">Register</button>
+	</div>
+</form>
