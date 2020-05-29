@@ -11,7 +11,7 @@
 				formControlName="username"
 				name="username"
 			/>
-			<mat-error *ngIf="fieldHasError('email')">{{ getErrorMessage('email') }}</mat-error>
+			<mat-error *ngIf="fieldHasError('username')">{{ getErrorMessage('username') }}</mat-error>
 		</mat-form-field>
 	</div>
 	<div class="form-item">
@@ -31,6 +31,6 @@
 	</div>
 	<div>
 		<button mat-raised-button color="primary" [disabled]="disableBtn" (click)="reg()">Register</button>
-		<button mat-raised-button (click)="redirectService.redirectTo('login')">Login</button>
+		<button mat-raised-button (click)="redirectService.redirectTo('auth/login')">Sign In</button>
 	</div>
 </form>
