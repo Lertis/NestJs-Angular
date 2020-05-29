@@ -5,10 +5,10 @@ import { IRequestContainer, RequestTypes } from '../../models/requests';
 import { MessageToastService } from '../../shared/services/message.service';
 import { Subject, EMPTY } from 'rxjs';
 import { takeUntil, catchError } from 'rxjs/operators';
-import { IToastMessage, ToastTypes } from 'src/app/models/entities';
-import { RedirectService } from 'src/app/shared/services/redirect.service';
-import { AppState } from 'src/app/state';
-import { actionRequest } from 'src/app/state/common.actions';
+import { IToastMessage, ToastTypes } from '../../models/entities';
+import { RedirectService } from '../../shared/services/redirect.service';
+import { AppState } from '../../state';
+import { AuthStateService } from '../../shared/services/auth.state.service';
 
 @Component({
 	template: ``,
@@ -19,7 +19,8 @@ export abstract class AuthRequestWrapper implements OnDestroy {
 		protected readonly api: ApiService,
 		protected readonly messageService: MessageToastService,
 		protected readonly redirectService: RedirectService,
-		protected readonly store: Store<AppState>
+		protected readonly store: Store<AppState>,
+		protected readonly authState: AuthStateService
 	) {}
 
 	protected authRequests(container: IRequestContainer) {
@@ -32,14 +33,14 @@ export abstract class AuthRequestWrapper implements OnDestroy {
 						const errorMessage: IToastMessage = {
 							type: ToastTypes.Error,
 							detail: err.error.message,
-							summary: err.error.error,
+							summary: `No matches for these credentials`,
 						};
 						this.messageService.addSingle(errorMessage);
 						return EMPTY;
 					})
 				)
-				.subscribe((user) => {
-					console.log(user);
+				.subscribe(() => {
+					this.authState.setLoginedStatus(true);
 					const successMessage: IToastMessage = {
 						type: ToastTypes.Success,
 						detail: 'Welcome!',

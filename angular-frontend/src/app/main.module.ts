@@ -18,6 +18,8 @@ import { MessageService } from 'primeng/api';
 import { MessageToastService } from './shared/services/message.service';
 import { SharedModule } from './shared/shared.module';
 import { RedirectGuard } from './shared/guards/redirect.guard';
+import { AuthStateService } from './shared/services/auth.state.service';
+import { AuthGuard } from './shared/guards/auth.guards';
 
 @NgModule({
 	declarations: [MainComponent],
@@ -43,6 +45,8 @@ import { RedirectGuard } from './shared/guards/redirect.guard';
 		MessageToastService,
 		MessageService,
 		RedirectGuard,
+		AuthStateService,
+		AuthGuard,
 	],
 	bootstrap: [MainComponent],
 })

@@ -11,6 +11,7 @@ import { ApiService } from '../../../../shared/services/api.service';
 import { MessageToastService } from '../../../../shared/services/message.service';
 import { IRequestContainer, RequestTypes } from '../../../../models/requests';
 import { AppState } from '../../../../state';
+import { AuthStateService } from 'src/app/shared/services/auth.state.service';
 
 @Component({
 	selector: 'app-login',
@@ -34,9 +35,10 @@ export class LoginComponent extends AuthRequestWrapper implements OnDestroy {
 		public readonly redirectService: RedirectService,
 		protected readonly api: ApiService,
 		protected readonly messageService: MessageToastService,
-		protected readonly store: Store<AppState>
+		protected readonly store: Store<AppState>,
+		protected readonly authState: AuthStateService
 	) {
-		super(api, messageService, redirectService, store);
+		super(api, messageService, redirectService, store, authState);
 		this.loginForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
 			this.formHasChanged();
 		});

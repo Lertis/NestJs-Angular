@@ -6,10 +6,11 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { LoginComponent } from './components/login/login.component';
 import { MaterialModule } from '../material/material.module';
 import { RedirectService } from '../../shared/services/redirect.service';
+import { AuthStateService } from '../../shared/services/auth.state.service';
 
 @NgModule({
 	declarations: [RegistrationComponent, LoginComponent],
 	imports: [CommonModule, AuthRoutingModule, MaterialModule, ReactiveFormsModule, FormsModule],
-	providers: [RedirectService],
+	providers: [RedirectService, AuthStateService],
 })
 export class AuthModule {}
