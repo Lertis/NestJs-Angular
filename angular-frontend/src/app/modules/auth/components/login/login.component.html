@@ -16,16 +16,20 @@
 	</div>
 	<div class="form-item">
 		<mat-form-field>
-			<input
-				matInput
-				id="password"
-				type="password"
-				required="required"
-				maxlength="50"
-				placeholder="Password"
-				formControlName="password"
-				name="password"
-			/>
+			<span style="display: flex;">
+				<input
+					matInput
+					id="password"
+					type="{{ showPassword ? 'text' : 'password' }}"
+					required="required"
+					maxlength="50"
+					placeholder="Password"
+					formControlName="password"
+					name="password"
+				/>
+				<mat-icon (click)="toggleVisability()">{{ showPassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+			</span>
+
 			<mat-error *ngIf="fieldHasError('password')">{{ getErrorMessage('password') }}</mat-error>
 		</mat-form-field>
 	</div>

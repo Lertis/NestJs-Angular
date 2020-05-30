@@ -30,6 +30,7 @@ export class LoginComponent extends AuthRequestWrapper implements OnDestroy {
 		password: new FormControl(''),
 	});
 	public disableBtn = true;
+	public showPassword = false;
 
 	constructor(
 		public readonly redirectService: RedirectService,
@@ -42,6 +43,10 @@ export class LoginComponent extends AuthRequestWrapper implements OnDestroy {
 		this.loginForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
 			this.formHasChanged();
 		});
+	}
+
+	toggleVisability() {
+		this.showPassword = !this.showPassword;
 	}
 
 	public fieldHasError(fieldName: string) {
