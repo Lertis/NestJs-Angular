@@ -10,6 +10,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
 
 const materialModules = [
 	MatButtonModule,
@@ -22,11 +23,12 @@ const materialModules = [
 	MatDialogModule,
 	MatInputModule,
 	MatSidenavModule,
-	MatListModule
+	MatListModule,
+	MatTabsModule,
 ];
 
 @NgModule({
 	imports: [...materialModules],
-	exports: [...materialModules]
+	exports: [...materialModules],
 })
-export class MaterialModule { }
+export class MaterialModule {}

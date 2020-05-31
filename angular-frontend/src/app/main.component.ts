@@ -11,10 +11,14 @@ import { RedirectService } from './shared/services/redirect.service';
 export class MainComponent implements OnDestroy {
 	mobileQuery: MediaQueryList;
 	private mobileQueryListener: () => void;
-	fillerNav = [
+	fillerNav: { text: string; link: string }[] = [
 		{
 			text: 'Products',
 			link: `products`,
+		},
+		{
+			text: 'Charts',
+			link: 'charts',
 		},
 		{
 			text: `About`,
