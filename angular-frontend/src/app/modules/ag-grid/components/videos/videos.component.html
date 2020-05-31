@@ -1,0 +1,18 @@
+<div class="div-ag-grid">
+	<ag-grid-angular
+		#agGrid
+		class="ag-theme-balham ag-grid-main"
+		(gridReady)="onGridReady()"
+		(selectionChanged)="onSelectionChanged($event)"
+		[gridOptions]="gridOptions"
+		[rowData]="rowData | async"
+		[frameworkComponents]="frameworkComponents"
+		[suppressRowClickSelection]="true"
+		[rowHeight]="rowHeight"
+		[popupParent]="popupParent"
+		[getContextMenuItems]="getContextMenuItems"
+		[modules]="modules"
+		[pagination]="true"
+	>
+	</ag-grid-angular>
+</div>

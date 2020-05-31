@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 const materialModules = [
 	MatButtonModule,
@@ -25,6 +26,7 @@ const materialModules = [
 	MatSidenavModule,
 	MatListModule,
 	MatTabsModule,
+	MatSlideToggleModule,
 ];
 
 @NgModule({

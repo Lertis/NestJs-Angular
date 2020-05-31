@@ -15,6 +15,7 @@ const routes: Routes = [
 	{ path: 'auth', loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule) },
 	{ path: 'about', loadChildren: () => import('./modules/about/about.module').then((m) => m.AboutModule) },
 	{ path: 'charts', loadChildren: () => import('./modules/charts/charts.module').then((m) => m.ChartsMainModule) },
+	{ path: 'grid', loadChildren: () => import('./modules/ag-grid/ag-grid.module').then((m) => m.AgMainGridModule) },
 	{ path: '**', component: NotFoundComponent },
 ];
 

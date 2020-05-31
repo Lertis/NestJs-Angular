@@ -17,6 +17,10 @@ export class MainComponent implements OnDestroy {
 			link: `products`,
 		},
 		{
+			text: 'Ag-Grid',
+			link: 'grid',
+		},
+		{
 			text: 'Charts',
 			link: 'charts',
 		},
