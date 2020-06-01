@@ -1,4 +1,3 @@
-import { each } from 'lodash';
 import { fieldValuesChanged } from '../../../shared/utils/common';
 
 export function authFormValidation(

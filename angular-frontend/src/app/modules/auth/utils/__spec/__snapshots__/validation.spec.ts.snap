@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[Function]: authFormValidation changed and invalid 1`] = `
+Object {
+  "changed": true,
+  "valid": false,
+}
+`;
+
+exports[`[Function]: authFormValidation changed and valid 1`] = `
+Object {
+  "changed": true,
+  "valid": true,
+}
+`;
+
+exports[`[Function]: authFormValidation doesn't changed and invalid 1`] = `
+Object {
+  "changed": false,
+  "valid": false,
+}
+`;
