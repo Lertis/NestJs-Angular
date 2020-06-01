@@ -8,6 +8,7 @@
 		"test": "ng test",
 		"test:cc": "ng test --codeCoverage",
 		"format:fix": "pretty-quick --staged",
+		"test:coverage": "jest --coverage",
 		"lint": "ng lint",
 		"e2e": "ng e2e",
 		"pretty-quick": "pretty-quick"
@@ -16,6 +17,26 @@
 		"hooks": {
 			"pre-commit": "npm run lint & npm run format:fix",
 			"pre-push": "npm run pretty-quick"
+		}
+	},
+	"jest": {
+		"preset": "jest-preset-angular",
+		"setupFilesAfterEnv": [
+			"<rootDir>/setupJest.ts"
+		],
+		"testPathIgnorePatterns": [
+			"<rootDir>/node_modules/",
+			"<rootDir>/dist/",
+			"<rootDir>/src/test.ts"
+		],
+		"globals": {
+			"ts-jest": {
+				"tsConfig": "<rootDir>/tsconfig.spec.json",
+				"stringifyContentPathRegex": "\\.html$",
+				"astTransformers": [
+					"<rootDir>/node_modules/jest-preset-angular/InlineHtmlStripStylesTransformer"
+				]
+			}
 		}
 	},
 	"private": true,
@@ -47,26 +68,22 @@
 		"zone.js": "0.10.2"
 	},
 	"devDependencies": {
+		"@angular-builders/jest": "^9.0.1",
 		"@angular-devkit/build-angular": "0.901.7",
 		"@angular/cli": "9.1.7",
 		"@angular/compiler-cli": "9.1.9",
-		"@types/jasmine": "3.5.0",
-		"@types/jasminewd2": "2.0.3",
+		"@types/jest": "^25.2.1",
 		"@types/node": "12.11.1",
 		"codelyzer": "5.1.2",
-		"husky": "^4.2.5",
-		"jasmine-core": "3.5.0",
-		"jasmine-spec-reporter": "4.2.1",
-		"karma": "5.0.0",
-		"karma-chrome-launcher": "3.1.0",
-		"karma-coverage-istanbul-reporter": "2.1.0",
-		"karma-jasmine": "3.0.1",
-		"karma-jasmine-html-reporter": "1.4.2",
+		"husky": "4.2.5",
+		"jest": "^24.9.0",
+		"jest-junit": "8.0.0",
+		"jest-preset-angular": "7.1.1",
 		"ng2-charts-schematics": "^0.1.7",
 		"npm-run-all": "^4.1.5",
 		"prettier": "^2.0.5",
 		"pretty-quick": "^2.0.1",
-		"protractor": "7.0.0",
+		"ts-jest": "24.0.0",
 		"ts-node": "8.3.0",
 		"tslint": "6.1.0",
 		"typescript": "3.8.3"

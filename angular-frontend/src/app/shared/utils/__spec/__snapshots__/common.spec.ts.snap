@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[Function]: fieldValuesChanged 1 1`] = `
+Array [
+  true,
+  false,
+  true,
+]
+`;
+
+exports[`[Function]: fieldValuesChanged 2 1`] = `
+Array [
+  false,
+  false,
+  true,
+]
+`;
+
+exports[`[Function]: fieldValuesChanged 3 1`] = `
+Array [
+  true,
+  false,
+  false,
+]
+`;
+
+exports[`[Function]: fieldValuesChanged 4 1`] = `
+Array [
+  false,
+  false,
+  true,
+]
+`;
+
+exports[`[Function]: fieldValuesChanged 5 1`] = `
+Array [
+  false,
+  false,
+  false,
+]
+`;
+
+exports[`[Function]: fieldValuesChanged 6 1`] = `
+Array [
+  false,
+  false,
+  false,
+]
+`;
