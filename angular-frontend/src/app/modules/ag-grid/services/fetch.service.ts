@@ -10,6 +10,6 @@ export class FetchService {
 	constructor(private readonly http: HttpClient) {}
 
 	getAPIData(): Observable<Item[]> {
-		return this.http.get<Video>(`../../../../assets/mock-grid.json`).pipe(map((data: Video) => data.items));
+		return this.http.get<Video>(`grid`).pipe(map((data: Video) => data.items));
 	}
 }

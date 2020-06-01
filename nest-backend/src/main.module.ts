@@ -6,9 +6,10 @@ import { LoggingInterceptor } from './interceptors/logging.interceptor';
 import { LoggerModule } from './modules/logger/logger.module';
 import { DynamicDumpModule } from './modules/dynamic/dynamic.dump.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { GridModule } from './modules/grid/grid.module';
 
 @Module({
-	imports: [ProductsModule, LoggerModule, DynamicDumpModule.forRoot(), AuthModule],
+	imports: [ProductsModule, LoggerModule, DynamicDumpModule.forRoot(), AuthModule, GridModule],
 	controllers: [],
 	providers: [AuthGuard, LoggingInterceptor],
 })
