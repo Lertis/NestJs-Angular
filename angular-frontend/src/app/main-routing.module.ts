@@ -6,12 +6,23 @@ import { ProductAddComponent } from './modules/products/components/product-add/p
 import { ProductUpdateComponent } from './modules/products/components/product-update/product-update.component';
 import { RedirectGuard } from './shared/guards/redirect.guard';
 import { AuthGuard } from './shared/guards/auth.guards';
+import { CanDeactivateGuard } from './shared/guards/can.deactivate.guard';
 
 const routes: Routes = [
 	{ path: '', redirectTo: 'products', pathMatch: 'full' },
 	{ path: 'products', component: ProductsWrapperComponent, canActivate: [AuthGuard] },
-	{ path: 'products/add', component: ProductAddComponent },
-	{ path: 'products/update/:id', component: ProductUpdateComponent, canActivate: [RedirectGuard] },
+	{
+		path: 'products/add',
+		component: ProductAddComponent,
+		canActivate: [AuthGuard],
+		canDeactivate: [CanDeactivateGuard],
+	},
+	{
+		path: 'products/update/:id',
+		component: ProductUpdateComponent,
+		canActivate: [AuthGuard, RedirectGuard],
+		canDeactivate: [CanDeactivateGuard],
+	},
 	{ path: 'auth', loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule) },
 	{ path: 'about', loadChildren: () => import('./modules/about/about.module').then((m) => m.AboutModule) },
 	{ path: 'charts', loadChildren: () => import('./modules/charts/charts.module').then((m) => m.ChartsMainModule) },

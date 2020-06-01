@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { takeUntil, mergeMap, catchError, skip } from 'rxjs/operators';
-import { Subject, EMPTY } from 'rxjs';
+import { Subject, EMPTY, Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../../../shared/services/api.service';
 import { IProduct } from '../../entity/product.interface';
@@ -10,15 +11,18 @@ import { IToastMessage, ToastTypes } from '../../../../models/entities';
 import { RedirectService } from '../../../../shared/services/redirect.service';
 import { cloneDeep } from 'lodash';
 import { productProfileValidation } from '../../utils/validation';
+import { CanComponentDeactivate } from '../../../../shared/guards/can.deactivate.guard';
+import { ConfirmationPopUpComponent } from '../../../../shared/components/confirmation-pop-up/confirmation-pop-up.component';
 
 @Component({
 	selector: 'app-product-update',
 	templateUrl: './product-update.component.html',
 	styleUrls: ['./product-update.component.scss'],
 })
-export class ProductUpdateComponent implements OnInit, OnDestroy {
+export class ProductUpdateComponent implements OnInit, OnDestroy, CanComponentDeactivate {
 	private readonly destroy$ = new Subject<void>();
 	private productId: string;
+	private changed = false;
 
 	public updateForm = new FormGroup({
 		title: new FormControl(''),
@@ -38,7 +42,8 @@ export class ProductUpdateComponent implements OnInit, OnDestroy {
 		private readonly route: ActivatedRoute,
 		private readonly api: ApiService,
 		private readonly message: MessageToastService,
-		public readonly redirectService: RedirectService
+		public readonly redirectService: RedirectService,
+		private readonly dialog: MatDialog
 	) {
 		this.route.params
 			.pipe(
@@ -95,6 +100,7 @@ export class ProductUpdateComponent implements OnInit, OnDestroy {
 	private formHasChanged() {
 		const profileClone = cloneDeep(this.updateForm.value);
 		const profileCheck = productProfileValidation(profileClone, this.formSet);
+		this.changed = profileCheck.changed;
 		const checkSet = Object.keys(profileCheck).map((attr) => profileCheck[attr]);
 		this.disableBtn = checkSet.some((flag: boolean) => !flag);
 	}
@@ -109,6 +115,15 @@ export class ProductUpdateComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnInit(): void {}
+
+	canDeactivate(): Observable<boolean> | boolean {
+		if (!this.changed) {
+			return true;
+		}
+		const dialogRef = this.dialog.open(ConfirmationPopUpComponent);
+		dialogRef.componentInstance.config.text = 'Do you want to discard your changes?';
+		return dialogRef.afterClosed();
+	}
 
 	ngOnDestroy() {
 		this.destroy$.next();
