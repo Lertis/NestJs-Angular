@@ -51,6 +51,7 @@ export class VideosComponent implements OnInit {
 					icon: '<i class="fas fa-external-link-alt"></i>',
 				});
 			}
+			result.push('copyWithHeaders', 'copy');
 			return result;
 		};
 	}
