@@ -1,11 +1,11 @@
 <ng-container *ngIf="isLoading; then loading; else mainContent"></ng-container>
 <ng-template #loading>
-	<div style="display: flex; align-items: center;">
+	<div style="display: flex; align-items: center; justify-content: center; margin-top: 2em;">
 		<app-spinner [color]="'primary'" [mode]="'indeterminate'"></app-spinner>
 	</div>
 </ng-template>
 <ng-template #mainContent>
-	<ng-container *ngIf="isLoaded && products.length === 0; then noData;"></ng-container>
+	<ng-container *ngIf="isLoaded && products.length === 0; then noData"></ng-container>
 	<ng-template #noData>
 		<p>Here is no products now.</p>
 		<h2>Would you like to add ?</h2>
@@ -14,7 +14,7 @@
 		</button>
 	</ng-template>
 
-	<ng-container *ngIf="isLoaded && products.length !== 0; then showData;"></ng-container>
+	<ng-container *ngIf="isLoaded && products.length !== 0; then showData"></ng-container>
 	<ng-template #showData>
 		<div class="grid-container-list">
 			<ng-container *ngFor="let product of products; trackBy: trackByMethod">
