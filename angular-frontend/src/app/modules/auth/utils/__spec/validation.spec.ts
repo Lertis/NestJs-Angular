@@ -1,7 +1,6 @@
 import { AUTH_FORMS_COMPARE } from './validation.set';
 import { authFormValidation } from '../validation';
-
-declare const expect: jest.Expect;
+import {} from 'jest';
 
 describe('[Function]: authFormValidation', () => {
 	AUTH_FORMS_COMPARE.forEach((test) => {

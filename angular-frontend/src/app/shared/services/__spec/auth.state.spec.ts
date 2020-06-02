@@ -13,7 +13,7 @@ describe('[Service]: Auth State', () => {
 		authState = TestBed.inject(AuthStateService);
 	}));
 
-	it(`AuthStateService: =>	should be created`, () => {
+	it(`should be created`, () => {
 		expect(authState).toBeTruthy();
 	});
 
