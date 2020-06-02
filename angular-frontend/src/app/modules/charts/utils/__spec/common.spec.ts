@@ -17,7 +17,6 @@ describe('[Function]: dynamicChartLabel', () => {
 	});
 });
 
-// TODO: sometimes min can be greater than max! -> write test
 describe('[Function]: randomNumber', () => {
 	VALUES_FOR_RANDOM_NUMBERS.forEach((test) => {
 		it(`number should be in range of ${test.min} - ${test.max}`, () => {
