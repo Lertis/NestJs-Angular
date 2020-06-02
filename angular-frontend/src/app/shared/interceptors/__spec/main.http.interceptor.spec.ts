@@ -52,7 +52,6 @@ describe(`[HTTP Interceptor]: MainHttpInterceptor`, () => {
 
 		const httpRequest = httpMock.expectOne(`${service.ROOT_URL}/posts`);
 
-		console.log(httpRequest.request.headers);
 		expect(httpRequest.request.headers.has('Content-Type')).toEqual(true);
 		expect(httpRequest.request.headers.has('Access-Control-Allow-Headers')).toEqual(true);
 		expect(httpRequest.request.headers.has('Access-Control-Allow-Origin')).toEqual(true);
